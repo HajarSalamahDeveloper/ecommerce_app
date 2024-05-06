@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/res/style_manager/style_manger.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../color/color_manager.dart';
@@ -10,11 +11,7 @@ class CustomTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      child: Text(title,
-          style: const TextStyle(
-              fontSize: 20,
-              color: AppColor.primaryColor,
-              fontWeight: FontWeight.bold)),
+      child: Text(title, style: getSemiBoldStyle(color: AppColor.primaryColor)),
     );
   }
 }

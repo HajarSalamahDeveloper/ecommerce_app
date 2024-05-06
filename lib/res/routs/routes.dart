@@ -5,20 +5,21 @@ import 'package:get/get.dart';
 
 import '../../view/cart/cart.dart';
 import '../../view/product_detailes/product_detailes.dart';
+import '../../view/splash_screen/splash_screen.dart';
 
 class AppRoutes {
   static appRoutes() => [
-        // GetPage(
-        //   name: '/',
-        //   page: () => SplashScreen(),
-        //   transitionDuration: Duration(milliseconds: 50),
-        //   transition: Transition.leftToRightWithFade,
-        // ),
         GetPage(
-          name: "/",
+          name: '/',
+          page: () => SplashScreen(),
+          transitionDuration: Duration(milliseconds: 10),
+          transition: Transition.leftToRightWithFade,
+        ),
+        GetPage(
+          name: "/home_screen_nav",
           page: () => HomeScreenBottomNav(),
-          // transitionDuration: Duration(milliseconds: 250),
-          // transition: Transition.leftToRightWithFade,
+          transitionDuration: Duration(milliseconds: 10),
+          transition: Transition.leftToRightWithFade,
         ),
         GetPage(
             name: AppRoute.productDetails, page: () => ProductDetailesScreen()),

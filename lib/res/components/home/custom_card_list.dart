@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/home_controller/home_controller.dart';
 import 'package:ecommerce_app/model/product_model.dart';
+import 'package:ecommerce_app/res/style_manager/style_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -44,10 +45,7 @@ class CustomListItems extends GetView<HomeController> {
                       ),
                       const SizedBox(height: 10),
                       Text(itemsModel.title,
-                          style: const TextStyle(
-                              color: AppColor.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
+                          style: getSmallHeaderStyle(color: AppColor.black)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -77,11 +75,8 @@ class CustomListItems extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("${itemsModel.price} \$",
-                              style: const TextStyle(
-                                  color: AppColor.primaryColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "sans")),
+                              style: getSmallHeaderStyle(
+                                  color: AppColor.primaryColor)),
                           GetBuilder<FavoriteController>(
                               builder: (favoriteController) => IconButton(
                                     onPressed: () {

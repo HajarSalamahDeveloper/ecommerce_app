@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../model/product_model.dart';
@@ -26,7 +27,7 @@ class TopProductPageDetails extends StatelessWidget {
               tag: "${product.id}",
               child: Image.network(
                 product.thumbnail,
-                height: 200,
+                height: 200.h,
                 fit: BoxFit.fill,
               ),
             ))
