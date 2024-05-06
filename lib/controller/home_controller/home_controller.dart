@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   // final productList = ProductModel().obs;
   RxList<ProductList> productList = <ProductList>[].obs;
   RxList<ProductModel> productListModel = <ProductModel>[].obs;
+
   RxString error = ''.obs;
 
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value;

@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/home_controller/home_controller.dart';
 import 'package:ecommerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/favorite_controller/favorite_controller.dart';
 import '../../color/color_manager.dart';
 import 'custom_rateing_color.dart';
 
@@ -13,6 +16,7 @@ class CustomListItems extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(FavoriteController());
     return InkWell(
         onTap: () {
           // Get.toNamed(AppRoute.productDetails,
@@ -30,11 +34,11 @@ class CustomListItems extends GetView<HomeController> {
                     children: [
                       Hero(
                         tag: "${itemsModel.id}",
-                        child:
-                            // CachedNetworkImage( imageUrl:
-                            Image.network(
-                          itemsModel.thumbnail,
-                          height: 100,
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              // Image.network(
+                              itemsModel.thumbnail,
+                          height: 100.h,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -78,16 +82,21 @@ class CustomListItems extends GetView<HomeController> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "sans")),
-                          IconButton(
-                              onPressed: () {
-                                // itemsModel.isFavorite;
-                              },
-                              icon: Icon(
-                                itemsModel.isFavorite == true
-                                    ? Icons.favorite
-                                    : Icons.favorite_border_outlined,
-                                color: AppColor.primaryColor,
-                              ))
+                          GetBuilder<FavoriteController>(
+                              builder: (favoriteController) => IconButton(
+                                    onPressed: () {
+                                      favoriteController
+                                          .addFavorite(itemsModel);
+                                      // Update the isFavorite property of itemsModel
+                                    },
+                                    icon: Icon(
+                                      itemsModel.isFavorite == true
+                                          ? Icons.favorite
+                                          : Icons
+                                              .favorite_border_outlined, // Use null-aware operator to handle potential null value
+                                      color: AppColor.primaryColor,
+                                    ),
+                                  ))
                         ],
                       )
                     ]),

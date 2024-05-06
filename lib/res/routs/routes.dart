@@ -21,6 +21,6 @@ class AppRoutes {
         ),
         GetPage(
             name: AppRoute.productDetails, page: () => ProductDetailesScreen()),
-        GetPage(name: AppRoute.myFavorite, page: () => const FavoritePage()),
+        GetPage(name: AppRoute.myFavorite, page: () => FavoritePage()),
       ];
 }
