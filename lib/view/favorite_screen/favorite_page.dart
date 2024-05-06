@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../res/color/color_manager.dart';
 import '../../res/components/custom_titile.dart';
 import '../../res/components/home/custom_card_list.dart';
-import '../home_screen/home_screen_nav.dart';
+import '../../res/routs/route_name.dart';
 
 class FavoritePage extends StatelessWidget {
   FavoritePage({Key? key}) : super(key: key);
@@ -18,16 +18,16 @@ class FavoritePage extends StatelessWidget {
         child: ListView(children: [
           Row(
             children: [
-              CustomTitle(
+              const CustomTitle(
                 title: 'Favorite Product',
               ),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ),
               IconButton(
                 onPressed: () {
-                  // Get.toNamed("home_page");
-                  Get.to(HomeScreenBottomNav());
+                  Get.offAllNamed(AppRoute.homepage);
+                  // Get.to(() => HomeScreenBottomNav());
                 },
                 icon: Icon(Icons.add),
                 color: AppColor.primaryColor,
@@ -35,16 +35,22 @@ class FavoritePage extends StatelessWidget {
             ],
           ),
           Obx(() {
-            return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: favController.favorites.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 0.7),
-                itemBuilder: (BuildContext context, index) {
-                  return CustomListItems(
-                      itemsModel: favController.favorites[index]);
-                });
+            return favController.favorites.length != 0
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: favController.favorites.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 0.7),
+                    itemBuilder: (BuildContext context, index) {
+                      return CustomListItems(
+                          itemsModel: favController.favorites[index]);
+                    })
+                : Center(
+                    child: CustomTitle(
+                    title: 'No Favorite Product',
+                  ));
           })
         ]));
   }

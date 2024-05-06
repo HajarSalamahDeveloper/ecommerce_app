@@ -16,7 +16,7 @@ class CustomListItems extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(FavoriteController());
+    Get.find<FavoriteController>();
     return InkWell(
         onTap: () {
           // Get.toNamed(AppRoute.productDetails,
@@ -58,7 +58,7 @@ class CustomListItems extends GetView<HomeController> {
                           ),
                           Container(
                             alignment: Alignment.bottomCenter,
-                            height: 22,
+                            height: 22.h,
                             child: CustomStarItems(rating: itemsModel.rating),
                             // Row(
                             //   children: [
@@ -87,13 +87,13 @@ class CustomListItems extends GetView<HomeController> {
                                     onPressed: () {
                                       favoriteController
                                           .addFavorite(itemsModel);
-                                      // Update the isFavorite property of itemsModel
                                     },
                                     icon: Icon(
-                                      itemsModel.isFavorite == true
+                                      favoriteController.favorites.any(
+                                              (product) =>
+                                                  product.id == itemsModel.id)
                                           ? Icons.favorite
-                                          : Icons
-                                              .favorite_border_outlined, // Use null-aware operator to handle potential null value
+                                          : Icons.favorite_border_outlined,
                                       color: AppColor.primaryColor,
                                     ),
                                   ))
@@ -101,14 +101,6 @@ class CustomListItems extends GetView<HomeController> {
                       )
                     ]),
               ),
-              // if (itemsModel.discountPercentage != "0")
-              //   Positioned(
-              //       top: 4,
-              //       left: 4,
-              //       child: Image.asset(
-              //         AppImageAsset.saleOne,
-              //         width: 40,
-              //       ))
             ],
           ),
         ));

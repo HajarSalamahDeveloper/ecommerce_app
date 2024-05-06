@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String titleappbar;
@@ -41,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               color: Colors.grey[200], borderRadius: BorderRadius.circular(10)),
-          width: 60,
+          width: 60.w,
           padding: EdgeInsets.symmetric(vertical: 8),
           child: IconButton(
               onPressed: onPressedIconFavorite,
